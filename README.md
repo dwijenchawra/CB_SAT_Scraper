@@ -1,5 +1,5 @@
 # CB_SAT_Scraper
-A Selenium tool to check automatically whether there are open SAT testing locations, so you don't miss the date like I did!
+A Selenium tool to check automatically whether there are open SAT testing locations, then email and text you a list so you don't miss the date like I did!
 
 This script uses chromedriver, so get youself one that matches your installed chrome version from https://chromedriver.chromium.org/downloads.
 
