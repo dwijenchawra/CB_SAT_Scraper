@@ -6,6 +6,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import wait
 from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.common.exceptions import NoSuchElementException
 
 import smtplib
 
@@ -57,6 +58,19 @@ class TestSatchecker():
         self.driver.find_element(By.CSS_SELECTOR, ".btn-width-label").click()
         self.driver.find_element(By.XPATH, '//*[@id="cb-atlas-header-1"]/div[1]/div/div[2]/div/a[1]').click()
         time.sleep(1)
+
+        # if security page exists
+        try:
+            self.driver.find_element(By.ID, "security")
+            has_security_page = True
+        except NoSuchElementException:
+            has_security_page = False
+
+        if has_security_page:
+            self.driver.find_element(By.ID, "security").click()
+            self.driver.find_element(By.ID, "security").send_keys("COLLEGEBOARD_PASSWORD")
+            self.driver.find_element(By.NAME, "verifyPassword").click()
+
         self.driver.find_element(By.CSS_SELECTOR, "li:nth-child(1) .cb-item-title").click()
         print("reached landing")
         self.driver.find_element(By.ID, "actionRegisterAnother").click()
